@@ -1,0 +1,48 @@
+---
+## Default Elasticsearch configuration from elasticsearch-docker.
+## from https://github.com/elastic/elasticsearch-docker/blob/master/build/elasticsearch/elasticsearch.yml
+#
+cluster.name: "elk-cluster"
+network.host: 0.0.0.0
+
+# minimum_master_nodes need to be explicitly set when bound on a public IP
+# set to 1 to allow single node clusters
+# Details: https://github.com/elastic/elasticsearch/pull/17288
+discovery.zen.minimum_master_nodes: 1
+
+## Use single node discovery in order to disable production mode and avoid bootstrap checks
+## see https://www.elastic.co/guide/en/elasticsearch/reference/current/bootstrap-checks.html
+#
+discovery.type: single-node
+
+xpack.ml.enabled: false
+
+## X-Pack settings
+## see https://www.elastic.co/guide/en/elasticsearch/reference/current/setup-xpack.html
+#
+xpack.license.self_generated.type: trial
+xpack.security.enabled: false
+
+#xpack.ssl.verification_mode: certificate
+xpack.http.ssl.verification_mode: none
+
+#xpack:
+#  security:
+#    authc:
+#      realms:
+#        file:
+#          type: file
+#          order: 0
+#        native:
+#          type: native
+#          order: 1
+#        active_directory:
+#          type: active_directory
+#          order: 2
+#          domain_name: example.com
+#          url: ldaps://example.com:636
+#          follow_referrals: false
+#          unmapped_groups_as_roles: false
+#          group_search.base_dn: "OU=Groups,DC=example,DC=com"
+##          ssl:
+##            certificate_authorities: [ "cert.pem" ]
